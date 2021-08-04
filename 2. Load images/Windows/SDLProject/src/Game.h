@@ -26,6 +26,15 @@ private:
 
     SDL_Window *_window;
     SDL_Renderer *_renderer;
+
+    SDL_Texture *_logoTexture;
+    SDL_Rect _sourceLogoRect;
+    SDL_Rect _destLogoRect;
+
+    SDL_Texture *_heroTexture;
+    SDL_Rect _sourceHeroRect;
+    SDL_Rect _destHeroRect;
+    int _frameIndex;
 };
 
 

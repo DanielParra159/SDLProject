@@ -19,6 +19,9 @@
     <Filter Include="src\Exceptions">
       <UniqueIdentifier>{88b41e8b-c227-4122-a07e-9e683565ad13}</UniqueIdentifier>
     </Filter>
+    <Filter Include="resources">
+      <UniqueIdentifier>{c279c67a-9924-4864-b45c-68e3ddd37a9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -35,5 +38,13 @@
     <ClInclude Include="src\Game.h">
       <Filter>src</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\logo.png">
+      <Filter>resources</Filter>
+    </Image>
+    <Image Include="resources\hero_walk.png">
+      <Filter>resources</Filter>
+    </Image>
   </ItemGroup>
 </Project>
