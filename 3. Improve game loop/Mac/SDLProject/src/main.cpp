@@ -2,27 +2,23 @@
 #include <stdio.h>
 #include "Game.h"
 #include <exception>
+#include <chrono>
 
 int main(int argc, char *args[]) {
     auto game = Game();
     try {
         game.Init();
 
+        auto lastTime = std::chrono::system_clock::now();
         while (game.IsRunning()) {
-            double start = SDL_GetTicks();
+            auto current = std::chrono::system_clock::now();
+            std::chrono::duration<double> elapsedSeconds = current - lastTime;
             game.HandleEvents();
 
-            game.Update();
+            game.Update(elapsedSeconds.count());
 
             game.Render();
-            const int MS_PER_FRAME = 16;
-            double end = SDL_GetTicks();
-            auto delay = start + MS_PER_FRAME - end;
-
-
-            if (delay > 0) {
-                SDL_Delay(delay);
-            }
+            lastTime = current;
         }
 
         game.Release();
