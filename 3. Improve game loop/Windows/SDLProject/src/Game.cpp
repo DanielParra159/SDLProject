@@ -32,6 +32,8 @@ void Game::Init() {
     _destHeroRect.h = 235;
     SDL_FreeSurface(surfaceTemp);
 
+    _heroXPosition = 0;
+
     _isRunning = true;
 }
 
@@ -62,12 +64,13 @@ void Game::HandleEvents() {
     }
 }
 
-void Game::Update() {
+void Game::Update(double elapsedSeconds) {
     _frameIndex = int(((SDL_GetTicks() / 100) % 10));
 
     _sourceHeroRect.x = _frameIndex * 587;
 
-    _destHeroRect.x += 1;
+    _heroXPosition += 30 * elapsedSeconds;
+    _destHeroRect.x = _heroXPosition;
 
 }
 
