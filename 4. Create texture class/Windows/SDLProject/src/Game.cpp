@@ -69,6 +69,9 @@ void Game::Release() {
     _hero->Release();
     _logoTexture->Release();
 
+    delete _hero;
+    delete _logoTexture;
+
     SDL_DestroyRenderer(_renderer);
     SDL_DestroyWindow(_window);
     SDL_Quit();

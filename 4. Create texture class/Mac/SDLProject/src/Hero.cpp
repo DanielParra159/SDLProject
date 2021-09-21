@@ -30,6 +30,7 @@ void Hero::Render() {
 
 void Hero::Release() {
     _heroAnimation->Release();
+    delete _heroAnimation;
 }
 
 

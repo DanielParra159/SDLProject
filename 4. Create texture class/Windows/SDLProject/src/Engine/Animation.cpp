@@ -5,7 +5,8 @@
 
 Animation::Animation(std::string path, SDL_Renderer *renderer, int frames, float duration, int frameHeight,
                      int frameWidth) : _texture(
-        new Texture(std::move(path), renderer)), _frames(frames), _duration(duration), _currentTime(0.0f), _sourceRect(),
+        new Texture(std::move(path), renderer)), _frames(frames), _duration(duration), _currentTime(0.0f),
+                                       _sourceRect(),
                                        _frameHeight(frameHeight), _frameWidth(frameWidth) {
 
 }
@@ -35,4 +36,5 @@ void Animation::Render(const SDL_Rect *destRect) const {
 
 void Animation::Release() {
     _texture->Release();
+    delete _texture;
 }
