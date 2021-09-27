@@ -3,6 +3,7 @@
 
 class Texture;
 class Hero;
+class InputHandler;
 
 class Game {
 public:
@@ -33,6 +34,8 @@ private:
     SDL_Rect _destLogoRect;
 
     Hero *_hero;
+
+    InputHandler* _inputHandler;
 };
 
 

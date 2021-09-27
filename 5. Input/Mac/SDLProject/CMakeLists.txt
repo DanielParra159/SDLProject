@@ -16,7 +16,7 @@ project(SDLProject)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMAKE")
-set(SOURCE_FILES src/main.cpp src/Game.cpp src/Game.h src/Exceptions/SDL_Exception.h src/Engine/Graphics/Texture.cpp src/Engine/Graphics/Texture.h src/Engine/Graphics/Animation.cpp src/Engine/Graphics/Animation.h src/Hero.cpp src/Hero.h src/Engine/Math/Vector2D.h)
+set(SOURCE_FILES src/main.cpp src/Game.cpp src/Game.h src/Exceptions/SDL_Exception.h src/Engine/Graphics/Texture.cpp src/Engine/Graphics/Texture.h src/Engine/Graphics/Animation.cpp src/Engine/Graphics/Animation.h src/Hero.cpp src/Hero.h src/Engine/Math/Vector2D.h src/Engine/Input/InputHandler.cpp src/Engine/Input/InputHandler.h src/Engine/Input/Controller.h src/Engine/Input/Keyboard.cpp src/Engine/Input/Keyboard.h)
 
 Message("")
 Message( STATUS "SOURCE entry point : " ${SOURCE_FILES} )

@@ -5,10 +5,11 @@
 #include <SDL_render.h>
 class Texture;
 class Animation;
+class Controller;
 
 class Hero {
 public:
-    Hero(SDL_Renderer *renderer);
+    Hero(SDL_Renderer *renderer, Controller* controller);
     void Init();
     void Release();
 
@@ -18,6 +19,7 @@ public:
 
 private:
     SDL_Renderer *_renderer;
+    Controller *_controller;
 
     Animation *_heroAnimation;
     SDL_Rect _destHeroRect;

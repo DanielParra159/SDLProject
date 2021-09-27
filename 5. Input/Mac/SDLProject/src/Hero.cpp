@@ -1,7 +1,11 @@
 #include "Engine/Graphics/Animation.h"
+#include "Engine/Input/Controller.h"
 #include "Hero.h"
 
-Hero::Hero(SDL_Renderer *renderer) : _renderer(renderer) {
+const int LEFT = 1;
+const int RIGHT = 2;
+
+Hero::Hero(SDL_Renderer *renderer, Controller *controller) : _renderer(renderer), _controller(controller) {
 }
 
 void Hero::Init() {
@@ -17,7 +21,11 @@ void Hero::Init() {
 }
 
 void Hero::Update(double elapsedSeconds) {
-    _heroXPosition += 30 * elapsedSeconds;
+    if (_controller->GetButtonDown(RIGHT)) {
+        _heroXPosition += 30 * elapsedSeconds;
+    } else if (_controller->GetButtonDown(LEFT)) {
+        _heroXPosition -= 30 * elapsedSeconds;
+    }
     _destHeroRect.x = _heroXPosition;
 
     _heroAnimation->Update(elapsedSeconds);

@@ -3,6 +3,13 @@
 #include "Exceptions/SDL_Exception.h"
 #include "Engine/Graphics/Texture.h"
 #include "Hero.h"
+#include "Engine/Input/InputHandler.h"
+#include "Engine/Input/Keyboard.h"
+
+const int JUMP = 0;
+const int LEFT = 1;
+const int RIGHT = 2;
+Keyboard *keyboard;
 
 void Game::Init() {
     InitSDL();
@@ -17,8 +24,20 @@ void Game::Init() {
     _destLogoRect.w = 150;
     _destLogoRect.h = 150;
 
-    _hero = new Hero(_renderer);
+
+
+    _inputHandler = new InputHandler();
+    keyboard = new Keyboard();
+    //auto button1 = InputButton{JUMP, SDLK_d};
+    auto button1 = InputButton{RIGHT, SDLK_d};
+    auto button2 = InputButton{LEFT, SDLK_a};
+    keyboard->AddButtonMap(button1);
+    keyboard->AddButtonMap(button2);
+    _inputHandler->AddController(keyboard);
+
+    _hero = new Hero(_renderer, keyboard);
     _hero->Init();
+
 
     _isRunning = true;
 }
@@ -41,16 +60,29 @@ void Game::CreateWindowAndRender() {
 
 
 void Game::HandleEvents() {
-    SDL_Event event;
+    _inputHandler->PreHandleEvent();
 
-    if (SDL_PollEvent(&event)) {
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
         if (event.type == SDL_QUIT) {
             _isRunning = false;
+        } else {
+            _inputHandler->HandleEvent(&event);
         }
     }
 }
 
 void Game::Update(double elapsedSeconds) {
+    if (keyboard->GetButtonDown(JUMP)) {
+        printf("Down ");
+    }
+    if (keyboard->GetButtonUp(JUMP)) {
+        printf("Up ");
+    }
+    if (keyboard->GetButton(JUMP)) {
+        printf("Button ");
+    }
+
     _hero->Update(elapsedSeconds);
 }
 
@@ -71,6 +103,8 @@ void Game::Release() {
 
     delete _hero;
     delete _logoTexture;
+    delete keyboard;
+    delete _inputHandler;
 
     SDL_DestroyRenderer(_renderer);
     SDL_DestroyWindow(_window);
